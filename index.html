@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Campus | Future Is Green</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #071a13;
+    --card: #10291e;
+    --text: #f0fff5;
+    --muted: #a6c4b1;
+    --green: #8cff9b;
+    --accent: #1ed878;
+    --border: #24533b;
+}
+
+body.light {
+    --bg: #effaf1;
+    --card: #ffffff;
+    --text: #153524;
+    --muted: #52715d;
+    --green: #168c4b;
+    --accent: #21a85d;
+    --border: #c9e5d0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    transition: 0.4s;
+    line-height: 1.6;
+}
+
+header {
+    min-height: 85px;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--green);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 17px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+.theme-btn {
+    background: var(--card);
+    color: var(--green);
+    border: 1px solid var(--border);
+}
+
+.hero {
+    min-height: 480px;
+    padding: 90px 8%;
+    display: flex;
+    align-items: center;
+    background:
+    radial-gradient(circle at 80% 40%, #1a754b55, transparent 35%),
+    linear-gradient(120deg, var(--bg), #103b26);
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 72px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 550px;
+    margin-bottom: 25px;
+}
+
+.main-btn {
+    background: var(--green);
+    color: #082016;
+}
+
+section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--green);
+    box-shadow: 0 10px 30px #21d87818;
+}
+
+.card .emoji {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: var(--green);
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.stats {
+    background: var(--card);
+}
+
+.stat-number {
+    color: var(--green);
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.stat-card {
+    text-align: center;
+}
+
+.calculator {
+    max-width: 650px;
+    margin: auto;
+}
+
+.field {
+    margin: 18px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #1b7042;
+    color: white;
+    text-align: center;
+    display: none;
+}
+
+.challenge {
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+}
+
+.challenge-box {
+    padding: 35px;
+    background: var(--card);
+    border: 1px solid var(--green);
+    border-radius: 20px;
+}
+
+.challenge-box h3 {
+    font-size: 23px;
+    color: var(--green);
+    margin: 15px 0;
+}
+
+.challenge-box .emoji {
+    font-size: 50px;
+}
+
+.quiz {
+    max-width: 700px;
+    margin: auto;
+}
+
+.quiz-options button {
+    width: 100%;
+    text-align: left;
+    margin: 7px 0;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.quiz-options button:hover {
+    border-color: var(--green);
+}
+
+#quiz-result {
+    color: var(--green);
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.gallery img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 13px;
+    border: 1px solid var(--border);
+}
+
+.gallery .card {
+    padding: 12px;
+}
+
+.gallery h3 {
+    padding: 10px 5px 3px;
+}
+
+footer {
+    background: #04110b;
+    color: #c8e5d2;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+footer span {
+    color: #8cff9b;
+}
+
+@media(max-width: 600px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 65px 7%;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🌱 GREEN CAMPUS</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#impact">Impact</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#challenge">Challenge</a>
+        <a href="#quiz">Quiz</a>
+    </nav>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+        ☀️ / 🌙
+    </button>
+</header>
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">A SMARTER WAY TO SAVE OUR PLANET</span>
+
+        <h1>Small Steps.<br>
+        <span>Greener Future.</span></h1>
+
+        <p>
+            Welcome to Green Campus, a digital eco-awareness
+            platform that inspires students to protect nature,
+            save resources and build a sustainable tomorrow.
+        </p>
+
+        <button class="main-btn"
+        onclick="document.getElementById('about').scrollIntoView()">
+            Explore Our Mission →
+        </button>
+    </div>
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+    <div class="section-title">
+        <h2>Our Green Mission 🌍</h2>
+        <p>Making our campus a better place for everyone.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="emoji">☀️</div>
+            <h3>Solar Energy</h3>
+            <p>Encourage renewable energy and reduce electricity waste.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">♻️</div>
+            <h3>Waste Management</h3>
+            <p>Separate waste, recycle materials and avoid unnecessary plastic.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">💧</div>
+            <h3>Save Water</h3>
+            <p>Protect water resources through responsible daily habits.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🌳</div>
+            <h3>More Greenery</h3>
+            <p>Plant trees and create a cleaner, healthier campus.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ENVIRONMENTAL IMPACT -->
+
+<section class="stats" id="impact">
+    <div class="section-title">
+        <h2>Our Environmental Goals</h2>
+        <p>Illustrative targets for a greener campus.</p>
+    </div>
+
+    <div class="grid">
+        <div class="card stat-card">
+            <div class="emoji">🌱</div>
+            <div class="stat-number" data-target="500">0</div>
+            <p>Trees to be planted</p>
+        </div>
+
+        <div class="card stat-card">
+            <div class="emoji">💧</div>
+            <div class="stat-number" data-target="1000">0</div>
+            <p>Litres of water to save</p>
+        </div>
+
+        <div class="card stat-card">
+            <div class="emoji">♻️</div>
+            <div class="stat-number" data-target="750">0</div>
+            <p>Kg of waste to recycle</p>
+        </div>
+
+        <div class="card stat-card">
+            <div class="emoji">⚡</div>
+            <div class="stat-number" data-target="300">0</div>
+            <p>Units of energy to save</p>
+        </div>
+    </div>
+</section>
+
+<!-- ECO CALCULATOR -->
+
+<section id="calculator">
+    <div class="section-title">
+        <h2>Eco Impact Calculator 🌿</h2>
+        <p>Estimate your daily environmental savings.</p>
+    </div>
+
+    <div class="card calculator">
+
+        <div class="field">
+            <label>How many plastic bottles do you avoid daily?</label>
+            <input type="number" id="bottles" min="0" value="2">
+        </div>
+
+        <div class="field">
+            <label>How many minutes do you save water?</label>
+            <input type="number" id="water" min="0" value="5">
+        </div>
+
+        <div class="field">
+            <label>How many hours do you save electricity?</label>
+            <input type="number" id="electricity" min="0" value="1">
+        </div>
+
+        <button class="main-btn" onclick="calculateEco()">
+            Calculate My Impact
+        </button>
+
+        <div class="result" id="eco-result"></div>
+    </div>
+</section>
+
+<!-- RANDOM GREEN TIP -->
+
+<section>
+    <div class="section-title">
+        <h2>Green Knowledge Corner 💡</h2>
+        <p>A little knowledge can create a big change.</p>
+    </div>
+
+    <div class="challenge">
+        <div class="challenge-box">
+            <div class="emoji">🌎</div>
+            <h3>Did You Know?</h3>
+            <p id="tip">Click below to discover an environmental fact!</p>
+            <br>
+            <button class="main-btn" onclick="newTip()">
+                Discover a Green Fact
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- DAILY CHALLENGE -->
+
+<section id="challenge">
+    <div class="section-title">
+        <h2>Today's Green Challenge 🎯</h2>
+        <p>One small action can make a difference.</p>
+    </div>
+
+    <div class="challenge">
+        <div class="challenge-box">
+            <div class="emoji" id="challenge-emoji">🌳</div>
+            <h3 id="challenge-title">Plant a Tree</h3>
+            <p id="challenge-text">
+                Help make your surroundings greener today!
+            </p>
+            <br>
+            <button class="main-btn" onclick="newChallenge()">
+                Generate New Challenge
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+    <div class="section-title">
+        <h2>Nature Gallery 📸</h2>
+        <p>Explore the beauty we are trying to protect.</p>
+    </div>
+
+    <div class="grid gallery">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600"
+            alt="Green forest">
+            <h3>Green Forests</h3>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600"
+            alt="Sunrise over nature">
+            <h3>Natural Beauty</h3>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600"
+            alt="Green plants">
+            <h3>Plant More Trees</h3>
+        </div>
+    </div>
+</section>
+
+<!-- ENVIRONMENTAL QUIZ -->
+
+<section id="quiz">
+    <div class="section-title">
+        <h2>Eco Genius Quiz 🧠</h2>
+        <p>Test your environmental knowledge!</p>
+    </div>
+
+    <div class="card quiz">
+        <h3 id="question">Which energy source is renewable?</h3>
+
+        <div class="quiz-options" id="options">
+            <button onclick="checkAnswer(0)">Coal</button>
+            <button onclick="checkAnswer(1)">Solar Energy</button>
+            <button onclick="checkAnswer(2)">Petrol</button>
+        </div>
+
+        <p id="quiz-result"></p>
+
+        <br>
+        <button class="main-btn" onclick="nextQuestion()">
+            Next Question →
+        </button>
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <h2>🌱 GREEN CAMPUS</h2>
+    <p>Be the change. Keep the planet green.</p>
+    <br>
+    <p>© 2026 Green Campus | Student Project</p>
+    <p><span>Designed for a sustainable future.</span></p>
+</footer>
+
+<script>
+
+// DARK AND LIGHT MODE
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+// ANIMATED COUNTERS
+
+const counters = document.querySelectorAll(".stat-number");
+
+counters.forEach(counter => {
+    let target = Number(counter.getAttribute("data-target"));
+    let current = 0;
+    let step = Math.ceil(target / 100);
+
+    let timer = setInterval(() => {
+        current += step;
+
+        if(current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+
+        counter.innerText = current + "+";
+    }, 25);
+});
+
+// ECO CALCULATOR
+
+function calculateEco() {
+    let bottles = Number(document.getElementById("bottles").value);
+    let water = Number(document.getElementById("water").value);
+    let electricity = Number(document.getElementById("electricity").value);
+
+    if(bottles < 0 || water < 0 || electricity < 0) {
+        alert("Please enter positive values.");
+        return;
+    }
+
+    // Illustrative estimates, not scientific measurements
+    let bottleTotal = bottles * 365;
+    let waterTotal = water * 365;
+    let electricityTotal = electricity * 365;
+
+    let result = document.getElementById("eco-result");
+
+    result.style.display = "block";
+
+    result.innerHTML =
+    "<h3>Your Yearly Eco Habits 🌍</h3>" +
+    "<p>You could avoid " + bottleTotal +
+    " single-use bottles.</p>" +
+    "<p>You could spend " + waterTotal +
+    " minutes saving water.</p>" +
+    "<p>You could save electricity for " +
+    electricityTotal + " hours.</p>" +
+    "<br><small>Estimates based on the daily values you entered.</small>";
+}
+
+// RANDOM ENVIRONMENTAL TIP
+
+let tips = [
+    "Turn off lights when leaving a room.",
+    "Carry a reusable water bottle.",
+    "Use both sides of a sheet of paper.",
+    "Avoid unnecessary plastic bags.",
+    "Plant trees and care for them.",
+    "Do not waste clean drinking water.",
+    "Walk or cycle for short distances when practical."
+];
+
+function newTip() {
+    let random = Math.floor(Math.random() * tips.length);
+    document.getElementById("tip").innerText = tips[random];
+}
+
+// DAILY GREEN CHALLENGE
+
+let challenges = [
+    ["🌳", "Plant Something", "Plant a sapling or take care of an existing plant."],
+    ["💧", "Save Water", "Avoid wasting water during your daily activities."],
+    ["♻️", "Recycle Today", "Separate recyclable waste from other waste."],
+    ["💡", "Save Electricity", "Switch off unused lights and fans."],
+    ["🚲", "Choose Green Travel", "Walk or cycle for a short journey if possible."],
+    ["🛍️", "Say No to Plastic", "Carry a reusable shopping bag."]
+];
+
+function newChallenge() {
+    let random = Math.floor(Math.random() * challenges.length);
+
+    document.getElementById("challenge-emoji").innerText =
+    challenges[random][0];
+
+    document.getElementById("challenge-title").innerText =
+    challenges[random][1];
+
+    document.getElementById("challenge-text").innerText =
+    challenges[random][2];
+}
+
+// ENVIRONMENTAL QUIZ
+
+let questions = [
+    {
+        q: "Which energy source is renewable?",
+        options: ["Coal", "Solar Energy", "Petrol"],
+        answer: 1
+    },
+    {
+        q: "Which bin is commonly used for recyclable dry waste?",
+        options: ["Blue", "Red", "Black"],
+        answer: 0
+    },
+    {
+        q: "Which action helps conserve water?",
+        options: ["Leaving taps open", "Fixing leaks", "Washing with running water"],
+        answer: 1
+    },
+    {
+        q: "Which gas do plants absorb during photosynthesis?",
+        options: ["Oxygen", "Carbon dioxide", "Nitrogen"],
+        answer: 1
+    },
+    {
+        q: "What does the 3R principle stand for?",
+        options: ["Read, Run, Rest", "Reduce, Reuse, Recycle", "Remove, Replace, Return"],
+        answer: 1
+    }
+];
+
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
+function showQuestion() {
+    let q = questions[questionIndex];
+
+    document.getElementById("question").innerText = q.q;
+
+    let optionsHTML = "";
+
+    q.options.forEach((option, index) => {
+        optionsHTML +=
+        `<button onclick="checkAnswer(${index})">${option}</button>`;
+    });
+
+    document.getElementById("options").innerHTML = optionsHTML;
+    document.getElementById("quiz-result").innerText = "";
+    answered = false;
+}
+
+function checkAnswer(selected) {
+    if(answered) return;
+
+    answered = true;
+
+    if(selected === questions[questionIndex].answer) {
+        score++;
+        document.getElementById("quiz-result").innerText =
+        "Correct! Great job! 🌱";
+    } else {
+        document.getElementById("quiz-result").innerText =
+        "Not quite! Keep learning. 🌍";
+    }
+}
+
+function nextQuestion() {
+    if(!answered) {
+        document.getElementById("quiz-result").innerText =
+        "Choose an answer first!";
+        return;
+    }
+
+    questionIndex++;
+
+    if(questionIndex >= questions.length) {
+        document.getElementById("question").innerText =
+        "Quiz Completed! 🎉";
+
+        document.getElementById("options").innerHTML = "";
+
+        document.getElementById("quiz-result").innerText =
+        "Your Score: " + score + " / " + questions.length;
+
+        questionIndex = 0;
+        score = 0;
+        answered = false;
+
+        return;
+    }
+
+    showQuestion();
+}
+
+</script>
+
+</body>
+</html>
